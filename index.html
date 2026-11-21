@@ -10,191 +10,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
-  <script>
-    (function () {
-      try {
-        var saved = localStorage.getItem("theme");
-        var prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-        var theme = saved || (prefersLight ? "light" : "dark");
-        document.documentElement.setAttribute("data-theme", theme);
-      } catch (e) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      }
-    })();
-  </script>
+  <script>(function(){try{var s=localStorage.getItem("theme");var p=window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches;var t=s||(p?"light":"dark");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();</script>
   <style>
-    :root,
-    html[data-theme="dark"] {
-      color-scheme: dark;
-      --bg-canvas: #070c16;
-      --bg-surface: #0e1626;
-      --bg-surface-elevated: #142036;
-      --bg-header: rgba(7, 12, 22, 0.82);
-      --text-primary: #f1f5f9;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
-      --border-subtle: rgba(148, 163, 184, 0.16);
-      --border-strong: rgba(125, 211, 252, 0.35);
-      --accent: #38bdf8;
-      --accent-secondary: #818cf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --badge-bg: rgba(30, 41, 59, 0.85);
-      --badge-text: #e2e8f0;
-      --gradient-heading: linear-gradient(120deg, #38bdf8 0%, #818cf8 55%, #c084fc 100%);
-      --shadow-card: 0 12px 30px rgba(2, 6, 23, 0.45);
-      --ambient-opacity: 0.45;
-    }
-
-    html[data-theme="light"] {
-      color-scheme: light;
-      --bg-canvas: #f6f8fc;
-      --bg-surface: #ffffff;
-      --bg-surface-elevated: #eef3fa;
-      --bg-header: rgba(246, 248, 252, 0.86);
-      --text-primary: #0b1324;
-      --text-secondary: #26334d;
-      --text-muted: #52627d;
-      --border-subtle: rgba(15, 23, 42, 0.11);
-      --border-strong: rgba(2, 132, 199, 0.35);
-      --accent: #0284c7;
-      --accent-secondary: #4f46e5;
-      --accent-soft: rgba(2, 132, 199, 0.1);
-      --badge-bg: #e8eef8;
-      --badge-text: #1e293b;
-      --gradient-heading: linear-gradient(120deg, #0284c7 0%, #4f46e5 60%, #7c3aed 100%);
-      --shadow-card: 0 10px 26px rgba(15, 23, 42, 0.06);
-      --ambient-opacity: 0.22;
-    }
-
-    body {
-      background-color: var(--bg-canvas) !important;
-      color: var(--text-primary) !important;
-      transition: background-color 0.28s ease, color 0.28s ease;
-    }
-
-    .ambient {
-      opacity: var(--ambient-opacity) !important;
-      transition: opacity 0.3s ease;
-    }
-
-    .site-header {
-      background: var(--bg-header) !important;
-      border-bottom-color: var(--border-subtle) !important;
-    }
-
-    .brand,
-    .nav a,
-    h1,
-    h2,
-    h3,
-    .project-id,
-    .site-footer {
-      color: var(--text-primary) !important;
-    }
-
-    .nav a:hover,
-    a:hover {
-      color: var(--accent) !important;
-    }
-
-    main a {
-      color: var(--accent);
-      text-decoration-color: var(--border-strong);
-      text-underline-offset: 3px;
-    }
-
-    .muted,
-    .section-aside,
-    .note,
-    .hero-index,
-    .visual-caption {
-      color: var(--text-muted) !important;
-    }
-
-    p {
-      color: var(--text-secondary) !important;
-    }
-
-    .section-kicker,
-    .card-number,
-    .project-label {
-      color: var(--accent) !important;
-    }
-
-    .gradient-text {
-      background: var(--gradient-heading) !important;
-      -webkit-background-clip: text !important;
-      background-clip: text !important;
-      color: transparent !important;
-    }
-
-    .button-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary)) !important;
-      color: #ffffff !important;
-      border-color: transparent !important;
-    }
-
-    .research-card,
-    .project-row,
-    .hero-visual {
-      background: var(--bg-surface) !important;
-      border-color: var(--border-subtle) !important;
-      box-shadow: var(--shadow-card) !important;
-    }
-
-    .research-card:hover,
-    .project-row:hover {
-      border-color: var(--border-strong) !important;
-      background: var(--bg-surface-elevated) !important;
-    }
-
-    .tags span,
-    .project-status {
-      background: var(--badge-bg) !important;
-      color: var(--badge-text) !important;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .status-dot,
-    .meta-dot,
-    .pulse {
-      background-color: var(--accent) !important;
-    }
-
-    .visual-orbit {
-      border-color: var(--border-subtle) !important;
-    }
-
-    .node {
-      background: var(--bg-surface-elevated) !important;
-      color: var(--text-primary) !important;
-      border: 1px solid var(--border-strong) !important;
-    }
-
-    .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.45rem 0.85rem;
-      border-radius: 999px;
-      border: 1px solid var(--border-strong);
-      background: var(--bg-surface-elevated);
-      color: var(--text-primary);
-      font-family: "DM Mono", monospace;
-      font-size: 0.78rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-    }
-
-    .theme-toggle:hover {
-      transform: translateY(-1px);
-      background: var(--accent-soft);
-      border-color: var(--accent);
-    }
-
-    .site-footer {
-      border-top-color: var(--border-subtle) !important;
-    }
+    :root,html[data-theme="dark"]{color-scheme:dark;--bg-canvas:#070c16;--bg-section-alt:#0b1220;--bg-surface:#0e1626;--bg-surface-elevated:#142036;--bg-header:rgba(7,12,22,0.85);--text-primary:#f1f5f9;--text-secondary:#cbd5e1;--text-muted:#94a3b8;--border-subtle:rgba(148,163,184,0.16);--border-strong:rgba(125,211,252,0.35);--accent:#38bdf8;--accent-secondary:#818cf8;--accent-soft:rgba(56,189,248,0.12);--badge-bg:rgba(30,41,59,0.85);--badge-text:#e2e8f0;--gradient-heading:linear-gradient(120deg,#38bdf8 0%,#818cf8 55%,#c084fc 100%);--shadow-card:0 12px 30px rgba(2,6,23,0.45);--ambient-opacity:0.45;}
+    html[data-theme="light"]{color-scheme:light;--bg-canvas:#f8fafc;--bg-section-alt:#f1f5f9;--bg-surface:#ffffff;--bg-surface-elevated:#e2e8f0;--bg-header:rgba(248,250,252,0.9);--text-primary:#0f172a;--text-secondary:#334155;--text-muted:#475569;--border-subtle:rgba(15,23,42,0.12);--border-strong:rgba(2,132,199,0.4);--accent:#0284c7;--accent-secondary:#4f46e5;--accent-soft:rgba(2,132,199,0.1);--badge-bg:#eef2f6;--badge-text:#1e293b;--gradient-heading:linear-gradient(120deg,#0284c7 0%,#4f46e5 60%,#7c3aed 100%);--shadow-card:0 6px 20px rgba(15,23,42,0.05);--ambient-opacity:0.18;}
+    body{background-color:var(--bg-canvas)!important;color:var(--text-primary)!important;transition:background-color 0.28s ease,color 0.28s ease;}
+    .research-section,.publications-section{background:var(--bg-section-alt)!important;border-top:1px solid var(--border-subtle)!important;border-bottom:1px solid var(--border-subtle)!important;}
+    .intro-section,.projects-section,.contact-section,.hero{background:transparent!important;}
+    .ambient{opacity:var(--ambient-opacity)!important;transition:opacity 0.3s ease;}
+    .site-header{background:var(--bg-header)!important;border-bottom:1px solid var(--border-subtle)!important;}
+    .brand,.nav a,h1,h2,h3,.project-id,.text-link,.contact-links a,.site-footer{color:var(--text-primary)!important;}
+    .nav a:hover,.text-link:hover,.contact-links a:hover,a:hover{color:var(--accent)!important;}
+    main a:not(.button){color:var(--accent);text-decoration-color:var(--border-strong);text-underline-offset:3px;}
+    .hero-actions .text-link{color:var(--text-primary)!important;}
+    .muted,.section-aside,.note,.hero-index,.visual-caption,.hero-meta span{color:var(--text-muted)!important;}
+    p{color:var(--text-secondary)!important;}
+    .section-kicker,.card-number,.project-label,.eyebrow{color:var(--accent)!important;}
+    .gradient-text{background:var(--gradient-heading)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;}
+    .button-primary{background:linear-gradient(135deg,var(--accent),var(--accent-secondary))!important;color:#ffffff!important;border-color:transparent!important;}
+    .research-card,.project-row,.hero-visual{background:var(--bg-surface)!important;border-color:var(--border-subtle)!important;box-shadow:var(--shadow-card)!important;}
+    .research-card:hover,.project-row:hover{border-color:var(--border-strong)!important;background:var(--bg-surface-elevated)!important;}
+    .tags span,.project-status{background:var(--badge-bg)!important;color:var(--badge-text)!important;border:1px solid var(--border-subtle)!important;border-radius:999px;padding:0.25rem 0.7rem;}
+    .status-dot,.meta-dot,.pulse{background-color:var(--accent)!important;}
+    .visual-orbit{border-color:var(--border-subtle)!important;}
+    html[data-theme="light"] .visual-core{background:radial-gradient(circle at 30% 30%,#e0f2fe,#bae6fd)!important;border:1px solid var(--border-strong)!important;box-shadow:0 10px 25px rgba(2,132,199,0.18)!important;}
+    html[data-theme="light"] .core-inner{color:#0f172a!important;}
+    .node{background:var(--bg-surface)!important;color:var(--text-primary)!important;border:1px solid var(--border-strong)!important;box-shadow:var(--shadow-card)!important;}
+    .node small{color:var(--text-muted)!important;}
+    .theme-toggle{display:inline-flex;align-items:center;gap:0.45rem;padding:0.45rem 0.85rem;border-radius:999px;border:1px solid var(--border-strong);background:var(--bg-surface);color:var(--text-primary);font-family:"DM Mono",monospace;font-size:0.78rem;cursor:pointer;transition:transform 0.2s ease,background-color 0.25s ease,color 0.25s ease,border-color 0.25s ease;}
+    .theme-toggle:hover{transform:translateY(-1px);background:var(--accent-soft);border-color:var(--accent);}
+    .site-footer{border-top:1px solid var(--border-subtle)!important;}
   </style>
   <script defer src="assets/main.js"></script>
 </head>
@@ -203,13 +48,7 @@
   <header class="site-header">
     <a class="brand" href="#home" aria-label="Kajeeth Kumar home"><span class="brand-mark">K<span>.</span></span><span class="brand-name">KAJEETH KUMAR</span></a>
     <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#research">Research</a><a href="#projects">Projects</a><a href="#publications">Publications</a><a href="#contact" class="nav-contact">Get in touch <span>↗</span></a>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme" aria-pressed="false">
-        <span class="theme-icon" aria-hidden="true">☀</span>
-        <span class="theme-label">Light</span>
-      </button>
-    </nav>
+    <nav class="nav" aria-label="Main navigation"><a href="#about">About</a><a href="#research">Research</a><a href="#projects">Projects</a><a href="#publications">Publications</a><a href="#contact" class="nav-contact">Get in touch <span>↗</span></a><button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme" aria-pressed="false"><span class="theme-icon" aria-hidden="true">☀</span><span class="theme-label">Light</span></button></nav>
   </header>
 
   <main>
@@ -262,133 +101,26 @@
       <div class="section-heading"><div><div class="section-kicker">03 — RESEARCH IN PROGRESS</div><h2>Active investigations<br><span class="muted">and prototypes.</span></h2></div><p class="section-aside">Ongoing research tracks in differential privacy, time-series analytics, and optimization techniques.</p></div>
       <div class="project-list">
         <article class="project-row"><div class="project-id">01</div><div class="project-main"><div class="project-label">DIFFERENTIAL PRIVACY · FORMAL GUARANTEES & UTILITY</div><h3>Differential Privacy Mechanisms and Utility Analysis</h3><p>Investigating local and central differential privacy mechanisms—including discretization, randomized perturbation, sensitivity/noise calibration, and privacy budget accounting—to preserve analytical utility on sensitive smart-meter and sequential datasets.</p><p><a href="PLACEHOLDER_DP_LINK" target="_blank" rel="noopener noreferrer">Project / Repository Link ↗</a></p></div><div class="project-status"><span class="status-dot"></span> In progress</div><span class="project-arrow">↗</span></article>
-
         <article class="project-row"><div class="project-id">02</div><div class="project-main"><div class="project-label">TIME-SERIES ANALYTICS · FOUNDATION MODELS & ANOMALIES</div><h3>Multi-Scale Time-Series Analytics and Foundation Models</h3><p>Advancing pretrained time-series foundation models and training-free/supervised anomaly detection, forecasting, and representation learning across high-volume building energy and sensor sequences.</p><p><a href="PLACEHOLDER_TS_LINK" target="_blank" rel="noopener noreferrer">Project / Repository Link ↗</a></p></div><div class="project-status"><span class="status-dot"></span> In progress</div><span class="project-arrow">↗</span></article>
-
         <article class="project-row"><div class="project-id">03</div><div class="project-main"><div class="project-label">OPTIMIZATION TECHNIQUES · CONVERGENCE & REGULARIZATION</div><h3>Structured and Non-Convex Optimization for Neural Models</h3><p>Studying fractional-order updates, chaotic gradient dynamics, adaptive step-size schedules, and physics/domain-informed regularization to stabilize training and improve out-of-distribution generalization.</p><p><a href="PLACEHOLDER_OPT_LINK" target="_blank" rel="noopener noreferrer">Project / Repository Link ↗</a></p></div><div class="project-status"><span class="status-dot"></span> In progress</div><span class="project-arrow">↗</span></article>
       </div>
     </section>
 
     <section class="publications-section" id="publications" style="font-size: 1.08rem;">
       <div class="section-wrap">
-        <div class="section-heading">
-          <div>
-            <div class="section-kicker">04 — PUBLICATIONS</div>
-            <h2>Ideas, documented<br><span class="muted">and shared.</span></h2>
-          </div>
-          <p class="section-aside" style="font-size: 1.05rem;">Complete list of international journal papers, conferences, workshops, and book chapters. Full profile: <a href="https://scholar.google.com/citations?user=aO5jE0wAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></p>
-        </div>
-
+        <div class="section-heading"><div><div class="section-kicker">04 — PUBLICATIONS</div><h2>Ideas, documented<br><span class="muted">and shared.</span></h2></div><p class="section-aside" style="font-size: 1.05rem;">Complete list of international journal papers, conferences, workshops, and book chapters. Full profile: <a href="https://scholar.google.com/citations?user=aO5jE0wAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a></p></div>
         <div class="project-list">
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">J01</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL JOURNAL · TURKISH JOURNAL OF ELECTRICAL ENGINEERING & COMPUTER SCIENCES (2026) · IF: 1.5 · Q3</div>
-              <h3 style="font-size: 1.25rem;">Complex-Valued Convolutional Neural Network and Time-Frequency Representation for Electrocardiogram-Based Arrhythmia Detection</h3>
-              <p style="font-size: 1.05rem;">Kajeeth Kumar G and Muthurajkumar S 2026. <em>Turkish Journal of Electrical Engineering & Computer Sciences</em>, vol. 34(3), pp. 385-400. · <a href="https://journals.tubitak.gov.tr/elektrik/vol34/iss3/4/" target="_blank" rel="noopener noreferrer">Paper ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Journal</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">J02</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL JOURNAL · ETRI JOURNAL, WILEY (2026) · IF: 1.6 · Q2</div>
-              <h3 style="font-size: 1.25rem;">Quantum-Enhanced Recursive Feature Elimination and Physics-Inspired Neural Networks for CAD Detection</h3>
-              <p style="font-size: 1.05rem;">Kajeeth Kumar G and Muthurajkumar S 2026. <em>ETRI Journal</em>, Wiley, pp. 1-12. · <a href="https://onlinelibrary.wiley.com/doi/10.4218/etrij.2025-0422" target="_blank" rel="noopener noreferrer">Paper / DOI Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Journal</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">J03</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL JOURNAL · PHYSICA SCRIPTA (2026) · IF: 2.6 · Q2</div>
-              <h3 style="font-size: 1.25rem;">Time-Frequency domain fusion and Fractional Adam Optimized 1D CNN model for arrhythmia classification</h3>
-              <p style="font-size: 1.05rem;">Kajeeth Kumar G and Muthurajkumar S 2026. <em>Physica Scripta</em>, Vol. 101 no. 06, pp. 6001. · <a href="https://iopscience.iop.org/article/10.1088/1402-4896/ae3f63/meta" target="_blank" rel="noopener noreferrer">Paper / DOI Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Journal</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">J04</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL JOURNAL · SCIENTIFIC REPORTS (2025) · IF: 3.8 · Q1</div>
-              <h3 style="font-size: 1.25rem;">Chaotic Gradient-Based Optimization with Fuzzy Temporal Optimized CNN for Heart Failure Prediction</h3>
-              <p style="font-size: 1.05rem;">Kajeeth Kumar G, and S. Muthurajkumar. <em>Scientific Reports</em> 15, no. 1 (2025): 3867. · <a href="https://www.nature.com/articles/s41598-025-88277-w" target="_blank" rel="noopener noreferrer">Paper / DOI Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Journal</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">C01</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL CONFERENCE · ACM E-ENERGY 2026</div>
-              <h3 style="font-size: 1.25rem;">EnergyFMs: Pretrained Models for Energy Meter Data Analytics</h3>
-              <p style="font-size: 1.05rem;">Pandarasamy Arjunan, Kajeeth Kumar G, Naman Srivastava, Arindram Jati, Vijay Ekambaram, Pankaj Dayama. In <em>16th ACM International Conference on Future and Sustainable Energy Systems (ACM e-Energy 2026)</em>. · <a href="https://dl.acm.org/doi/abs/10.1145/3744255.3798119" target="_blank" rel="noopener noreferrer">Paper / Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Conference</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">C02</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL CONFERENCE · IEEE ICNWC 2024</div>
-              <h3 style="font-size: 1.25rem;">Enhancing Sign Language Recognition Through Deep CNN and Handcrafted Features</h3>
-              <p style="font-size: 1.05rem;">Kumar, K.D., Ragul, K., Kumar, G.P.P. and G. Kajeeth Kumar. In <em>2024 2nd International Conference on Networking and Communications (ICNWC)</em> (pp. 1-6). IEEE. 2024. · <a href="https://ieeexplore.ieee.org/abstract/document/10537400" target="_blank" rel="noopener noreferrer">Paper / Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Conference</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">C03</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL CONFERENCE · IEEE ICOAC 2023</div>
-              <h3 style="font-size: 1.25rem;">SwinCNN: A Hybrid Deep Learning Architecture for Accurate Cotton Disease Prediction</h3>
-              <p style="font-size: 1.05rem;">Muthurajkumar, S., and G. Kajeeth Kumar. In <em>2023 12th International Conference on Advanced Computing (ICoAC)</em>, pp. 1-7. IEEE, 2023. · <a href="https://ieeexplore.ieee.org/abstract/document/10249246" target="_blank" rel="noopener noreferrer">Paper / Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Conference</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">W01</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL WORKSHOP · FMSYS @ ACM SENSYS 2026</div>
-              <h3 style="font-size: 1.25rem;">HART- A Pretrained Time-Series Foundational Model for Human Activity Recognition</h3>
-              <p style="font-size: 1.05rem;">Suyog Jare, Kajeeth Kumar G, Naman Srivastava and Pandarasamy Arjunan. <em>FMSys: Proceedings of the 3rd International Workshop on Foundation Models for Cyber-Physical Systems & Internet of Things</em>, SenSys 2026, ACM 2026. · <a href="https://ieeexplore.ieee.org/abstract/document/11643647" target="_blank" rel="noopener noreferrer">Paper / Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Workshop</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">W02</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL WORKSHOP · ACM SUSTAINABILITY WEEK COMPANION 2026</div>
-              <h3 style="font-size: 1.25rem;">FM4EAD: Towards Training-Free Energy Anomaly Detection with Large Language Models and Time-Series Foundation Models</h3>
-              <p style="font-size: 1.05rem;">Ganesh Islavath, Kajeeth Kumar G, Arun Kumar, and Pandarasamy Arjunan. 2026. In <em>ACM Sustainability Week 2026 (ACM Sustainability Week Companion ’26)</em>, June 22–25, 2026, Banff, AB, Canada. ACM, New York, NY, USA, 5 pages. https://doi.org/10.1145/3765611.3815485. · <a href="https://doi.org/10.1145/3765611.3815485" target="_blank" rel="noopener noreferrer">DOI Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Workshop</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">B01</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">BOOK CHAPTER · ELSEVIER (2026)</div>
-              <h3 style="font-size: 1.25rem;">Sensor-integrated smart wearable system for cardiac arrest monitoring using explainable artificial intelligence and machine learning</h3>
-              <p style="font-size: 1.05rem;">G. Kajeeth Kumar, S. Muthurajkumar, and Danush Gupta. In <em>Adaptive AI in Sensor Informatics</em>, pp. 153-180. Elsevier, 2026. · <a href="PLACEHOLDER_B01_LINK" target="_blank" rel="noopener noreferrer">Chapter / Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Book Chapter</div>
-          </article>
-
-          <article class="project-row">
-            <div class="project-id" style="font-size: 1.05rem;">B02</div>
-            <div class="project-main">
-              <div class="project-label" style="font-size: 0.9rem;">BOOK CHAPTER · IGI GLOBAL SCIENTIFIC PUBLISHING (2025)</div>
-              <h3 style="font-size: 1.25rem;">Crayfish-Optimized CNN and Random Forest for Effective Plant Disease Detection</h3>
-              <p style="font-size: 1.05rem;">Muthurajkumar, S., G. Kajeeth Kumar, and STP Mohana Priya. In <em>Computer Vision Techniques for Agricultural Advancements</em>, pp. 209-244. IGI Global Scientific Publishing, 2025. · <a href="PLACEHOLDER_B02_LINK" target="_blank" rel="noopener noreferrer">Chapter / Link ↗</a></p>
-            </div>
-            <div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Book Chapter</div>
-          </article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">J01</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL JOURNAL · TURKISH JOURNAL OF ELECTRICAL ENGINEERING & COMPUTER SCIENCES (2026) · IF: 1.5 · Q3</div><h3 style="font-size: 1.25rem;">Complex-Valued Convolutional Neural Network and Time-Frequency Representation for Electrocardiogram-Based Arrhythmia Detection</h3><p style="font-size: 1.05rem;">Kajeeth Kumar G and Muthurajkumar S 2026. <em>Turkish Journal of Electrical Engineering & Computer Sciences</em>, vol. 34(3), pp. 385-400. · <a href="https://journals.tubitak.gov.tr/elektrik/vol34/iss3/4/" target="_blank" rel="noopener noreferrer">Paper ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Journal</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">J02</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL JOURNAL · ETRI JOURNAL, WILEY (2026) · IF: 1.6 · Q2</div><h3 style="font-size: 1.25rem;">Quantum-Enhanced Recursive Feature Elimination and Physics-Inspired Neural Networks for CAD Detection</h3><p style="font-size: 1.05rem;">Kajeeth Kumar G and Muthurajkumar S 2026. <em>ETRI Journal</em>, Wiley, pp. 1-12. · <a href="https://onlinelibrary.wiley.com/doi/10.4218/etrij.2025-0422" target="_blank" rel="noopener noreferrer">Paper / DOI Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Journal</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">J03</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL JOURNAL · PHYSICA SCRIPTA (2026) · IF: 2.6 · Q2</div><h3 style="font-size: 1.25rem;">Time-Frequency domain fusion and Fractional Adam Optimized 1D CNN model for arrhythmia classification</h3><p style="font-size: 1.05rem;">Kajeeth Kumar G and Muthurajkumar S 2026. <em>Physica Scripta</em>, Vol. 101 no. 06, pp. 6001. · <a href="https://iopscience.iop.org/article/10.1088/1402-4896/ae3f63/meta" target="_blank" rel="noopener noreferrer">Paper / DOI Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Journal</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">J04</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL JOURNAL · SCIENTIFIC REPORTS (2025) · IF: 3.8 · Q1</div><h3 style="font-size: 1.25rem;">Chaotic Gradient-Based Optimization with Fuzzy Temporal Optimized CNN for Heart Failure Prediction</h3><p style="font-size: 1.05rem;">Kajeeth Kumar G, and S. Muthurajkumar. <em>Scientific Reports</em> 15, no. 1 (2025): 3867. · <a href="https://www.nature.com/articles/s41598-025-88277-w" target="_blank" rel="noopener noreferrer">Paper / DOI Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Journal</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">C01</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL CONFERENCE · ACM E-ENERGY 2026</div><h3 style="font-size: 1.25rem;">EnergyFMs: Pretrained Models for Energy Meter Data Analytics</h3><p style="font-size: 1.05rem;">Pandarasamy Arjunan, Kajeeth Kumar G, Naman Srivastava, Arindram Jati, Vijay Ekambaram, Pankaj Dayama. In <em>16th ACM International Conference on Future and Sustainable Energy Systems (ACM e-Energy 2026)</em>. · <a href="https://dl.acm.org/doi/abs/10.1145/3744255.3798119" target="_blank" rel="noopener noreferrer">Paper / Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Conference</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">C02</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL CONFERENCE · IEEE ICNWC 2024</div><h3 style="font-size: 1.25rem;">Enhancing Sign Language Recognition Through Deep CNN and Handcrafted Features</h3><p style="font-size: 1.05rem;">Kumar, K.D., Ragul, K., Kumar, G.P.P. and G. Kajeeth Kumar. In <em>2024 2nd International Conference on Networking and Communications (ICNWC)</em> (pp. 1-6). IEEE. 2024. · <a href="https://ieeexplore.ieee.org/abstract/document/10537400" target="_blank" rel="noopener noreferrer">Paper / Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Conference</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">C03</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL CONFERENCE · IEEE ICOAC 2023</div><h3 style="font-size: 1.25rem;">SwinCNN: A Hybrid Deep Learning Architecture for Accurate Cotton Disease Prediction</h3><p style="font-size: 1.05rem;">Muthurajkumar, S., and G. Kajeeth Kumar. In <em>2023 12th International Conference on Advanced Computing (ICoAC)</em>, pp. 1-7. IEEE, 2023. · <a href="https://ieeexplore.ieee.org/abstract/document/10249246" target="_blank" rel="noopener noreferrer">Paper / Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Conference</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">W01</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL WORKSHOP · FMSYS @ ACM SENSYS 2026</div><h3 style="font-size: 1.25rem;">HART- A Pretrained Time-Series Foundational Model for Human Activity Recognition</h3><p style="font-size: 1.05rem;">Suyog Jare, Kajeeth Kumar G, Naman Srivastava and Pandarasamy Arjunan. <em>FMSys: Proceedings of the 3rd International Workshop on Foundation Models for Cyber-Physical Systems & Internet of Things</em>, SenSys 2026, ACM 2026. · <a href="https://ieeexplore.ieee.org/abstract/document/11643647" target="_blank" rel="noopener noreferrer">Paper / Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Workshop</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">W02</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">INTERNATIONAL WORKSHOP · ACM SUSTAINABILITY WEEK COMPANION 2026</div><h3 style="font-size: 1.25rem;">FM4EAD: Towards Training-Free Energy Anomaly Detection with Large Language Models and Time-Series Foundation Models</h3><p style="font-size: 1.05rem;">Ganesh Islavath, Kajeeth Kumar G, Arun Kumar, and Pandarasamy Arjunan. 2026. In <em>ACM Sustainability Week 2026 (ACM Sustainability Week Companion ’26)</em>, June 22–25, 2026, Banff, AB, Canada. ACM, New York, NY, USA, 5 pages. https://doi.org/10.1145/3765611.3815485. · <a href="https://doi.org/10.1145/3765611.3815485" target="_blank" rel="noopener noreferrer">DOI Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Workshop</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">B01</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">BOOK CHAPTER · ELSEVIER (2026)</div><h3 style="font-size: 1.25rem;">Sensor-integrated smart wearable system for cardiac arrest monitoring using explainable artificial intelligence and machine learning</h3><p style="font-size: 1.05rem;">G. Kajeeth Kumar, S. Muthurajkumar, and Danush Gupta. In <em>Adaptive AI in Sensor Informatics</em>, pp. 153-180. Elsevier, 2026. · <a href="PLACEHOLDER_B01_LINK" target="_blank" rel="noopener noreferrer">Chapter / Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Book Chapter</div></article>
+          <article class="project-row"><div class="project-id" style="font-size: 1.05rem;">B02</div><div class="project-main"><div class="project-label" style="font-size: 0.9rem;">BOOK CHAPTER · IGI GLOBAL SCIENTIFIC PUBLISHING (2025)</div><h3 style="font-size: 1.25rem;">Crayfish-Optimized CNN and Random Forest for Effective Plant Disease Detection</h3><p style="font-size: 1.05rem;">Muthurajkumar, S., G. Kajeeth Kumar, and STP Mohana Priya. In <em>Computer Vision Techniques for Agricultural Advancements</em>, pp. 209-244. IGI Global Scientific Publishing, 2025. · <a href="PLACEHOLDER_B02_LINK" target="_blank" rel="noopener noreferrer">Chapter / Link ↗</a></p></div><div class="project-status" style="font-size: 0.95rem;"><span class="status-dot"></span> Book Chapter</div></article>
         </div>
       </div>
     </section>
@@ -397,35 +129,6 @@
   </main>
   <footer class="site-footer"><a class="brand" href="#home"><span class="brand-mark">K<span>.</span></span><span class="brand-name">KAJEETH KUMAR</span></a><span>Designed for curiosity. Built for the web.</span><span>© <span id="year"></span> Kajeeth Kumar</span></footer>
 
-  <script>
-    (function () {
-      var btn = document.getElementById("theme-toggle");
-      if (!btn) return;
-      var iconEl = btn.querySelector(".theme-icon");
-      var labelEl = btn.querySelector(".theme-label");
-      var metaTheme = document.querySelector('meta[name="theme-color"]');
-
-      function syncButton(theme) {
-        var isLight = theme === "light";
-        document.documentElement.setAttribute("data-theme", theme);
-        btn.setAttribute("aria-pressed", String(isLight));
-        if (iconEl) iconEl.textContent = isLight ? "☾" : "☀";
-        if (labelEl) labelEl.textContent = isLight ? "Dark" : "Light";
-        if (metaTheme) metaTheme.setAttribute("content", isLight ? "#f6f8fc" : "#070c16");
-      }
-
-      var currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
-      syncButton(currentTheme);
-
-      btn.addEventListener("click", function () {
-        var active = document.documentElement.getAttribute("data-theme") || "dark";
-        var next = active === "dark" ? "light" : "dark";
-        try {
-          localStorage.setItem("theme", next);
-        } catch (e) {}
-        syncButton(next);
-      });
-    })();
-  </script>
+  <script>(function(){var btn=document.getElementById("theme-toggle");if(!btn)return;var iconEl=btn.querySelector(".theme-icon");var labelEl=btn.querySelector(".theme-label");var metaTheme=document.querySelector('meta[name="theme-color"]');function syncButton(theme){var isLight=theme==="light";document.documentElement.setAttribute("data-theme",theme);btn.setAttribute("aria-pressed",String(isLight));if(iconEl)iconEl.textContent=isLight?"☾":"☀";if(labelEl)labelEl.textContent=isLight?"Dark":"Light";if(metaTheme)metaTheme.setAttribute("content",isLight?"#f8fafc":"#070c16");}syncButton(document.documentElement.getAttribute("data-theme")||"dark");btn.addEventListener("click",function(){var active=document.documentElement.getAttribute("data-theme")||"dark";var next=active==="dark"?"light":"dark";try{localStorage.setItem("theme",next);}catch(e){}syncButton(next);});})();</script>
 </body>
 </html>
