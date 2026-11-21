@@ -23,69 +23,177 @@
     })();
   </script>
   <style>
+    :root,
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg-canvas: #070c16;
+      --bg-surface: #0e1626;
+      --bg-surface-elevated: #142036;
+      --bg-header: rgba(7, 12, 22, 0.82);
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border-subtle: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(125, 211, 252, 0.35);
+      --accent: #38bdf8;
+      --accent-secondary: #818cf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --badge-bg: rgba(30, 41, 59, 0.85);
+      --badge-text: #e2e8f0;
+      --gradient-heading: linear-gradient(120deg, #38bdf8 0%, #818cf8 55%, #c084fc 100%);
+      --shadow-card: 0 12px 30px rgba(2, 6, 23, 0.45);
+      --ambient-opacity: 0.45;
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+      --bg-canvas: #f6f8fc;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #eef3fa;
+      --bg-header: rgba(246, 248, 252, 0.86);
+      --text-primary: #0b1324;
+      --text-secondary: #26334d;
+      --text-muted: #52627d;
+      --border-subtle: rgba(15, 23, 42, 0.11);
+      --border-strong: rgba(2, 132, 199, 0.35);
+      --accent: #0284c7;
+      --accent-secondary: #4f46e5;
+      --accent-soft: rgba(2, 132, 199, 0.1);
+      --badge-bg: #e8eef8;
+      --badge-text: #1e293b;
+      --gradient-heading: linear-gradient(120deg, #0284c7 0%, #4f46e5 60%, #7c3aed 100%);
+      --shadow-card: 0 10px 26px rgba(15, 23, 42, 0.06);
+      --ambient-opacity: 0.22;
+    }
+
+    body {
+      background-color: var(--bg-canvas) !important;
+      color: var(--text-primary) !important;
+      transition: background-color 0.28s ease, color 0.28s ease;
+    }
+
+    .ambient {
+      opacity: var(--ambient-opacity) !important;
+      transition: opacity 0.3s ease;
+    }
+
+    .site-header {
+      background: var(--bg-header) !important;
+      border-bottom-color: var(--border-subtle) !important;
+    }
+
+    .brand,
+    .nav a,
+    h1,
+    h2,
+    h3,
+    .project-id,
+    .site-footer {
+      color: var(--text-primary) !important;
+    }
+
+    .nav a:hover,
+    a:hover {
+      color: var(--accent) !important;
+    }
+
+    main a {
+      color: var(--accent);
+      text-decoration-color: var(--border-strong);
+      text-underline-offset: 3px;
+    }
+
+    .muted,
+    .section-aside,
+    .note,
+    .hero-index,
+    .visual-caption {
+      color: var(--text-muted) !important;
+    }
+
+    p {
+      color: var(--text-secondary) !important;
+    }
+
+    .section-kicker,
+    .card-number,
+    .project-label {
+      color: var(--accent) !important;
+    }
+
+    .gradient-text {
+      background: var(--gradient-heading) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary)) !important;
+      color: #ffffff !important;
+      border-color: transparent !important;
+    }
+
+    .research-card,
+    .project-row,
+    .hero-visual {
+      background: var(--bg-surface) !important;
+      border-color: var(--border-subtle) !important;
+      box-shadow: var(--shadow-card) !important;
+    }
+
+    .research-card:hover,
+    .project-row:hover {
+      border-color: var(--border-strong) !important;
+      background: var(--bg-surface-elevated) !important;
+    }
+
+    .tags span,
+    .project-status {
+      background: var(--badge-bg) !important;
+      color: var(--badge-text) !important;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .status-dot,
+    .meta-dot,
+    .pulse {
+      background-color: var(--accent) !important;
+    }
+
+    .visual-orbit {
+      border-color: var(--border-subtle) !important;
+    }
+
+    .node {
+      background: var(--bg-surface-elevated) !important;
+      color: var(--text-primary) !important;
+      border: 1px solid var(--border-strong) !important;
+    }
+
     .theme-toggle {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
       padding: 0.45rem 0.85rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.65);
-      color: #e2e8f0;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
       font-family: "DM Mono", monospace;
       font-size: 0.78rem;
       cursor: pointer;
       transition: transform 0.2s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
     }
+
     .theme-toggle:hover {
       transform: translateY(-1px);
-      border-color: rgba(148, 163, 184, 0.7);
+      background: var(--accent-soft);
+      border-color: var(--accent);
     }
 
-    html[data-theme="light"] {
-      color-scheme: light;
-    }
-    html[data-theme="light"] body {
-      background-color: #f8fafc !important;
-      color: #0f172a !important;
-    }
-    html[data-theme="light"] .site-header {
-      background: rgba(248, 250, 252, 0.85) !important;
-      border-bottom-color: rgba(15, 23, 42, 0.08) !important;
-    }
-    html[data-theme="light"] .brand,
-    html[data-theme="light"] .nav a,
-    html[data-theme="light"] h1,
-    html[data-theme="light"] h2,
-    html[data-theme="light"] h3,
-    html[data-theme="light"] .site-footer {
-      color: #0f172a !important;
-    }
-    html[data-theme="light"] .muted,
-    html[data-theme="light"] .section-aside,
-    html[data-theme="light"] .note,
-    html[data-theme="light"] p {
-      color: #334155 !important;
-    }
-    html[data-theme="light"] .research-card,
-    html[data-theme="light"] .project-row,
-    html[data-theme="light"] .hero-visual {
-      background: rgba(255, 255, 255, 0.88) !important;
-      border-color: rgba(15, 23, 42, 0.12) !important;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05) !important;
-    }
-    html[data-theme="light"] .tags span,
-    html[data-theme="light"] .project-status {
-      background: #e2e8f0 !important;
-      color: #0f172a !important;
-    }
-    html[data-theme="light"] .theme-toggle {
-      background: #ffffff;
-      color: #0f172a;
-      border-color: rgba(15, 23, 42, 0.2);
-    }
-    html[data-theme="light"] .ambient {
-      opacity: 0.25 !important;
+    .site-footer {
+      border-top-color: var(--border-subtle) !important;
     }
   </style>
   <script defer src="assets/main.js"></script>
@@ -303,7 +411,7 @@
         btn.setAttribute("aria-pressed", String(isLight));
         if (iconEl) iconEl.textContent = isLight ? "☾" : "☀";
         if (labelEl) labelEl.textContent = isLight ? "Dark" : "Light";
-        if (metaTheme) metaTheme.setAttribute("content", isLight ? "#f8fafc" : "#080d18");
+        if (metaTheme) metaTheme.setAttribute("content", isLight ? "#f6f8fc" : "#070c16");
       }
 
       var currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
